@@ -9,4 +9,24 @@ class Sigmet:
 
     def parse(self):
         spiltText = self.rawText.split(' ')
+        # Get validity time (Format: DDHHMM)
+        rawValidityPeriod = spiltText[((spiltText.index('VALID'))+1)]
+        self.validFrom = rawValidityPeriod.split('/')[0]
+        self.validTo = rawValidityPeriod.split('/')[-1]
+
+        # Get phenomenon
+        rawPhenomenon = spiltText[((spiltText.index('FIR')) + 1)] + ' ' + spiltText[((spiltText.index('FIR')) + 2)]
+
+        # Get observed or Forcasted
+        if spiltText[((spiltText.index('FIR')) + 3)] == 'OBS':
+            self.nowOrThen = 'OBS'
+            if spiltText[((spiltText.index('OBS')) + 1)] == 'AT':
+                self.nowOrThen += f' AT {spiltText[((spiltText.index('AT')) + 1)]}'
+
+        elif spiltText[((spiltText.index('FIR')) + 3)] == 'FCST':
+            self.nowOrThen = 'FCST'
+
+
+        print(self.nowOrThen)
         print(spiltText)
+
