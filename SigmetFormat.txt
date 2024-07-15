@@ -1,0 +1,4 @@
+WSAAii CCCC YYGGgg [BBB]
+CCCC SIGMET [n][n]n VALID YYGGgg/YYGGgg CCCCCCCC <FIR/CTA Name> FIR <Phenomenon> OBS/FCST
+[AT GGggZ] <Location> <Level> <Movement> <Intensity
+changes> <Forecast time and forecast position>=

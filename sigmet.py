@@ -14,8 +14,17 @@ class Sigmet:
         self.validFrom = rawValidityPeriod.split('/')[0]
         self.validTo = rawValidityPeriod.split('/')[-1]
 
+        #Get sigmet number and ident
+        self.id = spiltText[((spiltText.index('SIGMET'))-1)].split('\n')[1] + ' SIGMET ' + spiltText[((spiltText.index('SIGMET'))+1)]
+
+        # Handle CNL Sigmet
+        if spiltText[((spiltText.index('FIR')) + 1)] == 'CNL':
+            self.phenomenon = 'CNL'
+
+            return
+
         # Get phenomenon
-        rawPhenomenon = spiltText[((spiltText.index('FIR')) + 1)] + ' ' + spiltText[((spiltText.index('FIR')) + 2)]
+        self.phenomenon = spiltText[((spiltText.index('FIR')) + 1)] + ' ' + spiltText[((spiltText.index('FIR')) + 2)]
 
         # Get observed or Forcasted
         if spiltText[((spiltText.index('FIR')) + 3)] == 'OBS':
@@ -26,7 +35,9 @@ class Sigmet:
         elif spiltText[((spiltText.index('FIR')) + 3)] == 'FCST':
             self.nowOrThen = 'FCST'
 
+        print(self.id)
+        print(self.phenomenon)
+        print(self.nowOrThen + '\n')
 
-        print(self.nowOrThen)
-        print(spiltText)
+
 
